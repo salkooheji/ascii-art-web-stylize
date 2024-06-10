@@ -19,6 +19,7 @@ func formHandler(w http.ResponseWriter, r *http.Request) {
 	}
 
 	text := r.FormValue("text")
+	fmt.Println(text)
 	font := r.FormValue("font")
 	result := functions.FinalResult(text, font)
 
