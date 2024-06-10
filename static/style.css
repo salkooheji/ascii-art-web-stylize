@@ -35,10 +35,13 @@ textarea {
     min-height: 50px; /* Set a minimum height */
 }
 
+body{
+    background-color: black;
+}
 
 .output {
     width: auto;
-    height: auto;
+    height: 1024px;
     color: lightgreen;
     background-color: black;
     font-weight: bolder;
@@ -47,10 +50,20 @@ textarea {
     overflow-x: scroll; /* Add this line */
     white-space: pre-wrap; /* Add this line */
 }
+
 .output:hover {
     overflow-x: scroll; /* Add this line */
     white-space: pre-wrap; 
-    background: linear-gradient(0deg, rgba(34,193,195,1) 0%, rgba(166,146,104,1) 100%);    color : black;
+    border: 1px solid lightgreen
+}
+
+.error {
+    background-color: black;
+    color: lightgreen;
+}
+.error-page {
+    text-align: center;
+    background-color: black;
 }
 
 

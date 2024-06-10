@@ -5,18 +5,16 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Ascii_Art Web</title>
-    <!-- <link rel="stylesheet" href="reset.css"> -->
     <link rel="stylesheet" type="text/css" href="/static/style.css">
 </head>
 
 <body>
     <div class="container">
-        <main>
+        
             <header>
-                
                 <div class="input">
                     <h1>Ascii Art Web</h1>
-                    <form method="post" action="/form">
+                    <form method="post" action="/ascii-art">
                         <textarea name="text" cols="80" rows="2"  placeholder="Enter Text to Process"></textarea><br>
                         <input type="radio" name="font" value="standard.txt"> Standard
                         <input type="radio" name="font" value="shadow.txt"> Shadow
@@ -24,15 +22,16 @@
                         <button type="submit" name="subbtn">Draw</button>
                     </form>
                 </div>
-
             </header>
             <div class="output">
-                <br><br>
+                
                <pre >{{.}}</pre> 
             </div>
             
-        </main>
+        
     </div>
 </body>
 
 </html>
+
+
