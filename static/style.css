@@ -28,11 +28,17 @@ header h1 {
     font-weight: 900;
     font-size: 1.8rem;
 }
+textarea {
+    resize: vertical; /* Allow vertical resizing */
+    overflow: auto; /* Show scrollbars if needed */
+    box-sizing: border-box; /* Include padding and border in the element's total width and height */
+    min-height: 50px; /* Set a minimum height */
+}
+
 
 .output {
     width: auto;
     height: auto;
-    padding: 30px;
     color: lightgreen;
     background-color: black;
     font-weight: bolder;
