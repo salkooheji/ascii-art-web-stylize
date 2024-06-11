@@ -50,7 +50,7 @@ func formHandler(w http.ResponseWriter, r *http.Request) {
 	font := ""
 	text = r.FormValue("text")
 	font = r.FormValue("font")
-	if text != "" && CheckAlphabets(text) && font != "" && ValidateFont(font) && len(text) <= 5000 {
+	if text != "" && CheckAlphabets(text) && font != "" && ValidateFont(font) {
 		// 'text' form value is submitted, handle it
 
 		result = FinalResult(text, font)
