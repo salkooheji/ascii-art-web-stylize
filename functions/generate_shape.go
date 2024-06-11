@@ -21,5 +21,5 @@ func GenerateShape(text string, charMap map[rune][]string) string {
 			}
 		}
 	}
-	return strings.Join(result[:len(result)-1], "\n")
+	return strings.Join(result[:len(result)], "\n")
 }

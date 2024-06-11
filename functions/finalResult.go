@@ -6,8 +6,16 @@ func FinalResult(text string, font string) string {
 	font = "fonts/" + font
 	shapeFileContent := ReadShapeFile(font)
 	charactersMap := MapFileContentToRunes(shapeFileContent)
+	
+	if text == "" {
+		return ""
+	}
 	textToDrawSplit := strings.Split(text, "\n")
 	result := ""
+
+	if IsEmpty(textToDrawSplit) {
+		textToDrawSplit = textToDrawSplit[1:]
+	}
 
 	for _, line := range textToDrawSplit {
 		if line != "" {
@@ -17,4 +25,13 @@ func FinalResult(text string, font string) string {
 	}
 
 	return result
+}
+
+func IsEmpty(arr []string) bool {
+	for _, v := range arr {
+		if v != "" {
+			return false
+		}
+	}
+	return true
 }

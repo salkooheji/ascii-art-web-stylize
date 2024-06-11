@@ -13,16 +13,16 @@ type output struct {
 
 func GetHandler(w http.ResponseWriter, r *http.Request) {
 	// Check it again
-	if r.URL.Path != "/" || r.URL.Path == "/ascii-art" {
+	if r.URL.Path != "/" {
 		w.WriteHeader(http.StatusNotFound)
 		http.ServeFile(w, r, "static/404.html")
 		return
 	}
-	// Parse the template file
+
 	tmpl, err := template.ParseFiles("static/index.html")
 	if err != nil {
-		w.WriteHeader(http.StatusNotFound)
-		http.ServeFile(w, r, "static/404.html")
+		w.WriteHeader(http.StatusInternalServerError)
+		http.ServeFile(w, r, "static/500.html")
 		return
 	}
 	// Create a data structure to pass to the template
@@ -38,18 +38,27 @@ func GetHandler(w http.ResponseWriter, r *http.Request) {
 }
 
 func formHandler(w http.ResponseWriter, r *http.Request) {
+	if r.Method != http.MethodPost {
+		w.WriteHeader(http.StatusMethodNotAllowed)
+		http.ServeFile(w, r, "static/405.html")
+		return
+	}
+
 	//Data needed for the templates
 	result := ""
 	text := ""
 	font := ""
-	if text = r.FormValue("text"); text != "" {
+	fmt.Println(CheckAlphabets(text))
+	text = r.FormValue("text")
+	font = r.FormValue("font")
+	if text != "" && CheckAlphabets(text) && font != "" && ValidateFont(font) {
 		// 'text' form value is submitted, handle it
-		font = r.FormValue("font")
+
 		result = FinalResult(text, font)
 		// Use 'result' as needed
 	} else {
-		w.WriteHeader(http.StatusNotFound)
-		http.ServeFile(w, r, "static/404.html")
+		w.WriteHeader(http.StatusBadRequest)
+		http.ServeFile(w, r, "static/400.html")
 		return
 	}
 
