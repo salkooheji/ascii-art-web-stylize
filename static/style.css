@@ -66,6 +66,30 @@ body{
     text-align: center;
     background-color: black;
 }
+textarea {
+    width: 100%;
+    height: auto;
+}
+.input {
+    width: 80%;
+    height: auto;
+}
+
+/*Tablet view*/
+@media (max-width:768px){
+    .input {
+        width: 50%;
+    }
+   
+}
+/*mobile view*/
+@media (max-width: 400px){
+    .input {
+        width: 30%;
+    }
+  
+    
+}
 
 
 
