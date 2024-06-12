@@ -92,14 +92,18 @@ func formHandler(w http.ResponseWriter, r *http.Request) {
 
 // this to export a file
 func exportHandler(w http.ResponseWriter, r *http.Request) {
-
-	// Set the Content-Type header to plain text
+	if r.Method != http.MethodPost {
+		w.WriteHeader(http.StatusMethodNotAllowed)
+		http.ServeFile(w, r, "static/405.html")
+		return
+	}
+	//  Content-Type header to plain text
 	w.Header().Set("Content-Type", "text/plain")
 
-	// Set the Content-Disposition header to specify the filename
+	// Content-Disposition header to specify the filename
 	w.Header().Set("Content-Disposition", "attachment; filename=ascii_art.txt")
 
-	// Set the Content-Length header to the size of the file
+	//  Content-Length header to the size of the file
 	w.Header().Set("Content-Length", strconv.Itoa(len(r.FormValue("ascii"))))
 
 	// Write the ASCII art content to the response writer
