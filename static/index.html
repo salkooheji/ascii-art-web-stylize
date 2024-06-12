@@ -25,7 +25,20 @@
             </header>
             <div class="output">
                 
-               <pre >{{.}}</pre> 
+               <!-- <pre >{{.}}</pre>  -->
+
+               {{if .}}
+               <pre>{{.}}</pre>
+               <form action="/export" method="post">
+                 
+                   <input type="hidden" name="ascii" value="{{.}}" />
+                   <button type="submit" class="btn btn-primary btn-glow submit">
+                     Download
+                   </button>
+               </form>
+               {{ end }}
+
+
             </div>
             
         

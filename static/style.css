@@ -50,6 +50,7 @@ body{
     text-align: left;
     overflow-x: scroll; /* Add this line */
     white-space: pre-wrap; /* Add this line */
+    position: relative;
 }
 
 .output:hover {
@@ -73,6 +74,11 @@ textarea {
 .input {
     width: 80%;
     height: auto;
+}
+.output button{
+   position: absolute;
+   right: 0;
+   top: 0;
 }
 
 /*Tablet view*/

@@ -5,6 +5,7 @@ import (
 	"html/template"
 	"log"
 	"net/http"
+	"strconv"
 )
 
 type output struct {
@@ -88,6 +89,22 @@ func formHandler(w http.ResponseWriter, r *http.Request) {
 
 }
 
+// this to export a file
+func exportHandler(w http.ResponseWriter, r *http.Request) {
+
+	// Set the Content-Type header to plain text
+	w.Header().Set("Content-Type", "text/plain")
+
+	// Set the Content-Disposition header to specify the filename
+	w.Header().Set("Content-Disposition", "attachment; filename=ascii_art.txt")
+
+	// Set the Content-Length header to the size of the file
+	w.Header().Set("Content-Length", strconv.Itoa(len(r.FormValue("ascii"))))
+
+	// Write the ASCII art content to the response writer
+	w.Write([]byte(r.FormValue("ascii")))
+}
+
 func StartServer() {
 	// check it again to understand
 	http.Handle("/static/", http.StripPrefix("/static/", http.FileServer(http.Dir("static"))))
@@ -96,6 +113,8 @@ func StartServer() {
 	http.HandleFunc("/", GetHandler)
 	// This for handling the POST request from the form
 	http.HandleFunc("/ascii-art", formHandler)
+	//this to export a file
+	http.HandleFunc("/export", exportHandler)
 	fmt.Printf("Starting server at port 8080\n")
 	err := http.ListenAndServe(":8080", nil)
 	if err != nil {
